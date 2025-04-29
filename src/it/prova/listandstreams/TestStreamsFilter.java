@@ -13,7 +13,7 @@ public class TestStreamsFilter {
 		System.out.println("voglio una sotto-lista degli autori under 30");
 		List<Autore> listaAutoriUnderTrenta = listaAutoriMOCK.stream().filter(
 				autoreItem -> autoreItem.getEta() < 30)
-				.collect(Collectors.toList());
+				.toList();
 
 		// la stampo
 		listaAutoriUnderTrenta
@@ -27,7 +27,7 @@ public class TestStreamsFilter {
 			String messaggio = autoreItem.getNome() + " " + autoreItem.getCognome() + " con CF "
 					+ autoreItem.getCodiceFiscale();
 			return messaggio;
-		}).collect(Collectors.toList());
+		}).toList();
 		// stampo
 		messaggiListaAutoriUnderTrenta.forEach(s -> System.out.println(s));
 
@@ -43,7 +43,7 @@ public class TestStreamsFilter {
 		System.out.println("degli autori under 30 voglio la lista di libri");
 		// degli autori under 30 voglio la lista di libri
 		List<Libro> listaLibriDegliUnderTrenta = listaAutoriUnderTrenta.stream().flatMap(x -> x.getLibri().stream())
-				.collect(Collectors.toList());
+				.toList();
 		// map produce un output per ogni elemento che valuta, flatmap un numero
 		// indefinito
 
@@ -57,7 +57,7 @@ public class TestStreamsFilter {
 				.filter(autoreItem -> autoreItem.getLibri().stream().anyMatch(libroItem -> libroItem.getPagine() > 600))
 				.map(autoreItem -> autoreItem.getNome())
 				.peek(autoreNomeItem -> System.out.println("giusto per capire cosa passa..." + autoreNomeItem))
-				.collect(Collectors.toList());
+				.toList();
 		listaNomiAutoriConLibriOltreSeicentoPagine.forEach(l -> System.out.println(l));
 
 		System.out.println("voglio un autore con almeno 40 anni, mi va bene il primo che trovo");
